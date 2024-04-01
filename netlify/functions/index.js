@@ -68,7 +68,7 @@ exports.handler = async (event) => {
       }
     );
     console.log(response);
-    return Response.json({ data: response });
+    return new Response({ data: response });
   } catch (e) {
     return Response.json({ error: e }, { status: 500 });
   }

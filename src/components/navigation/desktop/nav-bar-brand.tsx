@@ -5,7 +5,7 @@ import logo from "src/styles/images/Parenthood.png";
 export const NavBarBrand: React.FC = () => {
   return (
     <div className="nav-bar__brand">
-      <NavLink to="/" exact>
+      <NavLink to="/">
         <img
           className="nav-bar__logo"
           src={logo}

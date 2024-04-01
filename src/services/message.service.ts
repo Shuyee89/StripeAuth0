@@ -2,6 +2,8 @@ import { AxiosRequestConfig } from "axios";
 import { ApiResponse } from "../models/api-response";
 import { callExternalApi } from "./external-api.service";
 
+const backendurl = "https://spauth0.netlify.app/.netlify/functions";
+
 const apiServerUrl = process.env.REACT_APP_API_SERVER_URL;
 
 export const getPublicResource = async (): Promise<ApiResponse> => {
@@ -41,8 +43,7 @@ export const getProtectedResource = async (): Promise<ApiResponse> => {
 };
 export const gettestapi = async (value: any): Promise<any> => {
   const axios = require("axios");
-  const url =
-    "https://frolicking-basbousa-7b968f.netlify.app/.netlify/functions/index";
+  const url = `${backendurl}/index`;
   const response = await axios.get(url);
   console.log(response);
 };

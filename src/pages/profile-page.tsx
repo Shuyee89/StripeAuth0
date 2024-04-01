@@ -48,12 +48,7 @@ export const ProfilePage: React.FC = () => {
           </div>
         </div>
       </div>
-      <NavLink
-        to="/Payment"
-        exact
-        className="nav-bar__tab"
-        activeClassName="nav-bar__tab--active"
-      >
+      <NavLink to="/Payment" className="nav-bar__tab">
         Payment
       </NavLink>
     </PageLayout>

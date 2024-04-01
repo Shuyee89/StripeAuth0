@@ -13,13 +13,7 @@ export const MobileNavBarTab: React.FC<MobileNavBarTabProps> = ({
   handleClick,
 }) => {
   return (
-    <NavLink
-      to={path}
-      onClick={handleClick}
-      exact
-      className="mobile-nav-bar__tab"
-      activeClassName="mobile-nav-bar__tab--active"
-    >
+    <NavLink to={path} onClick={handleClick} className="mobile-nav-bar__tab">
       {label}
     </NavLink>
   );

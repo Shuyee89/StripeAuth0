@@ -1,8 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { PageLoader } from "./components/page-loader";
-import { ProtectedRoute } from "./components/protected-route";
+// import { ProtectedRoute } from "./components/protected-route";
 import { AdminPage } from "./pages/admin-page";
 import { CallbackPage } from "./pages/callback-page";
 import { HomePage } from "./pages/home-page";
@@ -25,16 +25,16 @@ export const App: React.FC = () => {
   }
 
   return (
-    <Switch>
-      <Route path="/" exact component={HomePage} />
-      <ProtectedRoute path="/profile" component={ProfilePage} />
-      <Route path="/public" component={PublicPage} />
-      <ProtectedRoute path="/protected" component={ProtectedPage} />
-      <ProtectedRoute path="/admin" component={AdminPage} />
-      <Route path="/callback" component={CallbackPage} />
-      <Route path="/Payment" component={PaymentPage} />
-      <Route path="/Completion" component={CompletionPage} />
-      <Route path="*" component={NotFoundPage} />
-    </Switch>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/public" element={<PublicPage />} />
+      <Route path="/protected" element={<ProtectedPage />} />
+      <Route path="/admin" element={<AdminPage />} />
+      <Route path="/callback" element={<CallbackPage />} />
+      <Route path="/Payment" element={<PaymentPage />} />
+      <Route path="/Completion" element={<CompletionPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 };

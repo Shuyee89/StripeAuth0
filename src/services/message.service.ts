@@ -39,31 +39,88 @@ export const getProtectedResource = async (): Promise<ApiResponse> => {
     error,
   };
 };
+export const gettestapi = async (value: any): Promise<any> => {
+  const axios = require("axios");
+  const url =
+    "https://frolicking-basbousa-7b968f.netlify.app/.netlify/functions/index";
+  const response = await axios.get(url);
+  console.log(response);
+};
 
-export const getIDToken = async (value: any): Promise<ApiResponse> => {
+export const getIDToken = async (value: any): Promise<any> => {
+  const jose = require("jose");
+  const moment = require("moment");
+  const axios = require("axios");
+  const alg = "ES256";
+  const jwk = {
+    kty: "EC",
+    x: "ymaMMlqKzge9pmGUxPwS3qfkYUtob29sEgG_wU63MOE",
+    y: "3MCwa-qqDnE1ZPeyIH2E13aabE2U_89UyNJa6R0giQc",
+    crv: "P-256",
+    d: "y6SBUcEt0OzcCKtkXqOyKfMDsHNLZqi0GHUvkiC7WX4",
+  };
+
+  const privateKey = await jose.importJWK(jwk, alg);
+  const nowTime = moment().unix();
+  const futureTime = moment().add(1, "minutes").unix();
+  const jwt = await new jose.SignJWT({
+    sub: "QXE0KF4WDs7Q73YYnnQVBIQVajPMXFPJ",
+    iss: "QXE0KF4WDs7Q73YYnnQVBIQVajPMXFPJ",
+    aud: "https://stg-id.singpass.gov.sg",
+    iat: nowTime,
+    exp: futureTime,
+  })
+    .setProtectedHeader({
+      alg: "ES256",
+      kid: "sig-20240322",
+      typ: "JWT",
+    })
+    .sign(privateKey);
+
+  console.log(jwt);
+
   const article = {
-    client_id: "tLRDBkf1CNy5Rsi34mEKuOD5EpQAwjIq",
-    redirect_uri: "https//test.d3hbw70k8kmva5.amplifyapp.com",
-    grant_type: "authorization_code",
+    client_id: "QXE0KF4WDs7Q73YYnnQVBIQVajPMXFPJ",
+    redirect_uri: "https://frolicking-basbousa-7b968f.netlify.app",
     code: value,
     client_assertion_type:
       "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-    client_assertion:
-      "eyJraWQiOiJ0ZXN0aW5nMTIzIiwiYWxnIjoiRVM1MTIifQ.ewogICAgImlzcyI6ICJ0TFJEQmtmMUNOeTVSc2kzNG1FS3VPRDVFcFFBd2pJcSIsCiAgICAic3ViIjogInRMUkRCa2YxQ055NVJzaTM0bUVLdU9ENUVwUUF3aklxIiwKICAgICJhdWQiOiAiaHR0cHM6Ly9zdGctaWQuc2luZ3Bhc3MuZ292LnNnIiwKICAgICJleHAiOiAxNzA5NjI4NDM2LAogICAgImlhdCI6IDE3MDk2Mjg0MzYKfQ.AQT5L0jBQQY1Fw9HFVgEr7TAKxjeGSqqY9aLMdOTLFh9n4G5dCMVTwl8t2T3cCHLBZ6auQxckrebgE9NexjCr_aXAYN9QKgMbCflaE-b7pafNJyzWNBhNPOnwlJhJ-t4AwuHntSCOMTwRyqcRn4tCSRJ8OWQZvyGGwJo1fMkFYUnFuGy",
+    grant_type: "authorization_code",
+    client_assertion: jwt,
   };
+  console.log(article);
+  //  const config: AxiosRequestConfig = {
+  //   url: "https://stg-id.singpass.gov.sg/token",
+  //   method: "POST",
+  //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  //   data: JSON.stringify(article),
+  // };
 
-  const config: AxiosRequestConfig = {
-    url: "https://stg-id.singpass.gov.sg/token",
-    method: "POST",
-    data: JSON.stringify(article),
-  };
+  const url = "https://stg-id.singpass.gov.sg/token";
+  const response = await axios.post(
+    url,
+    new URLSearchParams({
+      client_id: "QXE0KF4WDs7Q73YYnnQVBIQVajPMXFPJ",
+      redirect_uri: "https://frolicking-basbousa-7b968f.netlify.app",
+      code: value,
+      client_assertion_type:
+        "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+      grant_type: "authorization_code",
+      client_assertion: jwt,
+    }),
+    {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    }
+  );
+  console.log(response);
+  // const { data, error } = (await callExternalApi({ config })) as ApiResponse;
 
-  const { data, error } = (await callExternalApi({ config })) as ApiResponse;
-
-  return {
-    data,
-    error,
-  };
+  // return {
+  //   data,
+  //   error,
+  // };
 };
 
 export const getAdminResource = async (): Promise<ApiResponse> => {

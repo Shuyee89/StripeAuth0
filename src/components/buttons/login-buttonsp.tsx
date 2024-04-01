@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getIDToken } from "../../services/message.service";
+import { getIDToken, gettestapi } from "../../services/message.service";
 import logo from "src/styles/images/Singpass-logo.png";
 import { useLocation } from "react-router-dom";
 
@@ -9,7 +9,6 @@ export const LoginButtonsp: React.FC = () => {
   const queryParams = new URLSearchParams(location.search);
   const code = queryParams.get("code");
   console.log(code);
-
   useEffect(() => {
     let isMounted = true;
 
@@ -37,14 +36,20 @@ export const LoginButtonsp: React.FC = () => {
   }, []);
 
   return (
-    <button
-      className="button__loginsp"
-      onClick={() =>
-        (window.location.href =
-          "https://stg-id.singpass.gov.sg/auth?scope=openid&state=30e370f9-e38a-42a5-98d2-3cc8d2a75ed4&response_type=code&redirect_uri=https://test.d3hbw70k8kmva5.amplifyapp.com&client_id=tLRDBkf1CNy5Rsi34mEKuOD5EpQAwjIq&nonce=DVs6-iC9S_P3D4A-Orqddn8lnTGBhPjivS3klznXubPE")
-      }
-    >
-      <img src={logo} alt="Website Logo" width="60" height="17" />
-    </button>
+    <div>
+      <button
+        className="button__loginsp"
+        onClick={() =>
+          (window.location.href =
+            "https://stg-id.singpass.gov.sg/auth?scope=openid&state=30e370f9-e38a-42a5-98d2-3cc8d2a75ed4&response_type=code&redirect_uri=https://frolicking-basbousa-7b968f.netlify.app&client_id=QXE0KF4WDs7Q73YYnnQVBIQVajPMXFPJ&nonce=" +
+            crypto.randomUUID())
+        }
+      >
+        <img src={logo} alt="Website Logo" width="60" height="17" />
+      </button>
+      <button className="button__loginsp" onClick={gettestapi}>
+        Test
+      </button>
+    </div>
   );
 };

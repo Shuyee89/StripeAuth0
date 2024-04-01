@@ -1,0 +1,22 @@
+{
+  "keys": [
+    {
+      "kty": "EC",
+      "use": "sig",
+      "crv": "P-521",
+      "kid": "testing123",
+      "x": "AEsEIUaAQDhk3a6tj4k-4NgOpNMoeycCydStDgZgVA3hTSGev3xcpRcwk7mjOGS9ytwRoAei_22FtJfKC6svoSYv",
+      "y": "ABftrSSsczxBz282TXfkDo8qfCbfRe8AGXSOOPGJUyhs50plp8_8Y_N634tMLCRweMG5JKgIgZ01DCgHVvTEUXFU",
+      "alg": "ES512"
+    },
+    {
+      "kty": "EC",
+      "use": "enc",
+      "crv": "P-521",
+      "kid": "encryption123",
+      "x": "AUSTgww9fwCjEb2EN44RHP9wYPFjf4oOsmmiyA6hYd6PBM7h32E0wheuYPFW_n4htq1QgGVSN_F07S5WJmvcN0xn",
+      "y": "AMlpTKQYzCCYE4evQeO1vgU1OQXRkrYjoWpRKpewLac2CkuSEg0g-1Y3yWOaG8AOrIT3l5cK5WQuoTHYoCP_PKMj",
+      "alg": "ECDH-ES+A128KW"
+    }
+  ]
+}

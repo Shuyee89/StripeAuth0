@@ -26,7 +26,7 @@ export const App: React.FC = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route index element={<HomePage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/public" element={<PublicPage />} />
       <Route path="/protected" element={<ProtectedPage />} />

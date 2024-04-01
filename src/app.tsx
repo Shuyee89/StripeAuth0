@@ -1,7 +1,7 @@
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { PageLoader } from "./components/page-loader";
+// import { PageLoader } from "./components/page-loader";
 // import { ProtectedRoute } from "./components/protected-route";
 import { AdminPage } from "./pages/admin-page";
 import { CallbackPage } from "./pages/callback-page";
@@ -14,15 +14,15 @@ import { PaymentPage } from "./pages/Payment";
 import { CompletionPage } from "./pages/Completion";
 
 export const App: React.FC = () => {
-  const { isLoading } = useAuth0();
+  // const { isLoading } = useAuth0();
 
-  if (isLoading) {
-    return (
-      <div className="page-layout">
-        <PageLoader />
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="page-layout">
+  //       <PageLoader />
+  //     </div>
+  //   );
+  // }
 
   return (
     <Routes>

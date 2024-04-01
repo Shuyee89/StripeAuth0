@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from "axios";
 import { ApiResponse } from "../models/api-response";
 import { callExternalApi } from "./external-api.service";
 
-const backendurl = "https://spauth0.netlify.app/.netlify/functions";
+// const backendurl = "https://spauth0.netlify.app/.netlify/functions";
 
 const apiServerUrl = process.env.REACT_APP_API_SERVER_URL;
 

@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.15fb2aa3.css",
+    "main.js": "/static/js/main.58797448.js",
+    "static/media/Logoicon.png": "/static/media/Logoicon.85cdb4e8dbaa2c41e78a.png",
+    "static/media/Parenthood.png": "/static/media/Parenthood.8016b5b067a54e96e03a.png",
+    "index.html": "/index.html",
+    "main.15fb2aa3.css.map": "/static/css/main.15fb2aa3.css.map",
+    "main.58797448.js.map": "/static/js/main.58797448.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.15fb2aa3.css",
+    "static/js/main.58797448.js"
+  ]
+}

@@ -311,7 +311,7 @@ $RECYCLE.BIN/
 /coverage
 
 # production
-/build
+
 
 # misc
 .env.local

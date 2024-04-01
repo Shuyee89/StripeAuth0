@@ -43,7 +43,7 @@ export const getProtectedResource = async (): Promise<ApiResponse> => {
 };
 export const gettestapi = async (value: any): Promise<any> => {
   const axios = require("axios");
-  const url = `${backendurl}/index`;
+  const url = `/.netlify/functions/index`;
   const response = await axios.get(url);
   console.log(response);
 };

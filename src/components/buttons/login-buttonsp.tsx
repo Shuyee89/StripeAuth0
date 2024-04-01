@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getIDToken, gettestapi } from "../../services/message.service";
+import { gettestapi } from "../../services/message.service";
 import logo from "src/styles/images/Singpass-logo.png";
 import { useLocation } from "react-router-dom";
 
@@ -13,7 +13,7 @@ export const LoginButtonsp: React.FC = () => {
     let isMounted = true;
 
     const getMessage = async () => {
-      const { data, error } = await getIDToken(code);
+      const { data, error } = await gettestapi(code);
 
       if (!isMounted) {
         return;
@@ -41,7 +41,7 @@ export const LoginButtonsp: React.FC = () => {
         className="button__loginsp"
         onClick={() =>
           (window.location.href =
-            "https://stg-id.singpass.gov.sg/auth?scope=openid&state=30e370f9-e38a-42a5-98d2-3cc8d2a75ed4&response_type=code&redirect_uri=https://frolicking-basbousa-7b968f.netlify.app&client_id=QXE0KF4WDs7Q73YYnnQVBIQVajPMXFPJ&nonce=" +
+            "https://stg-id.singpass.gov.sg/auth?scope=openid&state=30e370f9-e38a-42a5-98d2-3cc8d2a75ed4&response_type=code&redirect_uri=https://spauth0.netlify.app&client_id=QXE0KF4WDs7Q73YYnnQVBIQVajPMXFPJ&nonce=" +
             crypto.randomUUID())
         }
       >

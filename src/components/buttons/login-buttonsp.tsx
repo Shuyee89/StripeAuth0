@@ -8,7 +8,7 @@ export const LoginButtonsp: React.FC = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const code = queryParams.get("code");
-  console.log(code);
+  console.log(code, message);
   useEffect(() => {
     let isMounted = true;
 
@@ -33,7 +33,7 @@ export const LoginButtonsp: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [code]);
 
   return (
     <div>

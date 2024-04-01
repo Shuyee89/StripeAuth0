@@ -3,7 +3,7 @@ import React from "react";
 import { LoginButton } from "../../buttons/login-button";
 import { LoginButtonsp } from "../../buttons/login-buttonsp";
 import { LogoutButton } from "../../buttons/logout-button";
-import { SignupButton } from "../../buttons/signup-button";
+// import { SignupButton } from "../../buttons/signup-button";
 
 export const NavBarButtons: React.FC = () => {
   const { isAuthenticated } = useAuth0();

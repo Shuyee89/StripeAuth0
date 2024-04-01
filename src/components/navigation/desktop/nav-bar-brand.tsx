@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import logo from "src/styles/images/Parenthood.png";
 
 export const NavBarBrand: React.FC = () => {
   return (
@@ -7,8 +8,8 @@ export const NavBarBrand: React.FC = () => {
       <NavLink to="/" exact>
         <img
           className="nav-bar__logo"
-          src="https://cdn.auth0.com/blog/hub/code-samples/hello-world/auth0-logo.svg"
-          alt="Auth0 shield logo"
+          src={logo}
+          alt="Website Logo"
           width="122"
           height="36"
         />

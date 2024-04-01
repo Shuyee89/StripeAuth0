@@ -4,13 +4,13 @@
   justify-content: center;
   flex-shrink: 0;
   width: 100%;
-
   box-shadow: rgb(90 95 102) 0-1.5px 0 inset;
-
   z-index: 300;
-  background-color: var(--black);
+  background-color: rgb(235 202 64);
 }
-
+.nav-barh1 {
+  margin: 0px;
+}
 .nav-bar {
   flex: 1;
   display: flex;
@@ -45,7 +45,7 @@
 }
 
 .nav-bar__logo {
-  height: 3.2rem;
+  height: 11.2rem;
 }
 
 .nav-bar__tabs {
@@ -123,7 +123,6 @@
   .nav-bar__brand {
     display: flex;
     align-items: center;
-
     margin-right: 1.6rem;
   }
 

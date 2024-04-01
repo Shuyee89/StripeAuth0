@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
 import { CodeSnippet } from "../components/code-snippet";
 import { PageLayout } from "../components/page-layout";
+import { NavLink } from "react-router-dom";
 
 export const ProfilePage: React.FC = () => {
   const { user } = useAuth0();
@@ -47,6 +48,14 @@ export const ProfilePage: React.FC = () => {
           </div>
         </div>
       </div>
+      <NavLink
+        to="/Payment"
+        exact
+        className="nav-bar__tab"
+        activeClassName="nav-bar__tab--active"
+      >
+        Payment
+      </NavLink>
     </PageLayout>
   );
 };

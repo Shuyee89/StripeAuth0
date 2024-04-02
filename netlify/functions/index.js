@@ -67,6 +67,8 @@ exports.handler = async (event) => {
         },
       }
     );
+    console.log(data);
+    console.log(typeof data);
 
     try {
       const descprivateKey = {

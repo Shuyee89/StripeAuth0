@@ -67,7 +67,7 @@ exports.handler = async (event) => {
         },
       }
     );
-    console.log(data.id_token);
+    console.log(JSON.stringify(data.id_token));
     return {
       statusCode: 200,
       body: JSON.stringify({ data: data }),

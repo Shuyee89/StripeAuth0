@@ -68,7 +68,13 @@ exports.handler = async (event) => {
     //   }
     // );
     // console.log(response);
-    return new Response("Hello world");
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ data: "success" }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
   } catch (e) {
     return Response.json({ error: e }, { status: 500 });
   }

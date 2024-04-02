@@ -69,6 +69,7 @@ exports.handler = async (event) => {
     );
 
     try {
+      const { fromKeyLike } = require("jose/jwk/from_key_like");
       const descprivateKey = {
         kty: "EC",
         d: "p4YZHS0_BS4VMUayEtt38qi2sMdkhs4JRFlks7HJCD8",
@@ -77,14 +78,11 @@ exports.handler = async (event) => {
         kid: "enc123",
         x: "0GR5oBa1FINjCZP_W-nR8Yqoz4E_9j7lgCuRPh9PZTA",
         y: "0leGfxdQSJdtubopqhj5uhPVYV3LSd_yf3y2DdRD5No",
+        alg: "ECDH-ES+A256KW",
       };
-      const alg2 = "ECDH-ES+A256KW";
 
-      const privateKey2 = await jose.importJWK(descprivateKey, alg2);
-      const decryptedToken = await jose.compactDecrypt(
-        data.id_token,
-        privateKey2
-      );
+      const jwkkey = await fromKeyLike(descprivateKey);
+      const decryptedToken = await jose.compactDecrypt(data.id_token, jwkkey);
 
       // Extract the payload from the decrypted token
       const payload = JSON.parse(decryptedToken.payload.toString());

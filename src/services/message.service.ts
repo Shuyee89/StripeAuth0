@@ -45,29 +45,27 @@ export const gettestapi = async (value: any): Promise<any> => {
   const axios = require("axios");
   const url = `/.netlify/functions/index?code=${value}`;
 
-  axios
-    .get(url)
-    .then(function (response: any) {
-      var result = JSON.stringify(response.data, function (key, val) {
-        if (key === "id_token") {
-          console.log(val);
-          return val;
-        } else {
-          console.log(val);
-        }
-      });
+  // axios
+  //   .get(url)
+  //   .then(function (response: any) {
+  //     var result = JSON.stringify(response.data, function (key, val) {
+  //       if (key === "id_token") {
+  //         console.log(val);
+  //         return val;
+  //       } else {
+  //         console.log(val);
+  //       }
+  //     });
 
-      console.log(result);
-      const obj = JSON.stringify(response.data);
-      console.log(obj);
-    })
-    .catch(function (error: any) {
-      console.error(error);
-    });
-  //   const data = await axios.get(url);
-  //   console.log(data);
-  //   console.log(response.data.data.id_token);
-  // };
+  //     console.log(result);
+  //     const obj = JSON.stringify(response.data);
+  //     console.log(obj);
+  //   })
+  //   .catch(function (error: any) {
+  //     console.error(error);
+  //   });
+  const data = await axios.get(url);
+  console.log(data);
 };
 export const getIDToken = async (value: any): Promise<any> => {
   const jose = require("jose");

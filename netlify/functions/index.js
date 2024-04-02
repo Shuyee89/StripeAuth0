@@ -67,10 +67,9 @@ exports.handler = async (event) => {
         },
       }
     );
-    console.log(JSON.stringify(data.id_token));
     return {
       statusCode: 200,
-      body: JSON.stringify({ data: data }),
+      body: JSON.stringify({ data: data.id_token }),
       headers: {
         "Content-Type": "application/json",
       },

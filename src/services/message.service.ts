@@ -44,8 +44,8 @@ export const getProtectedResource = async (): Promise<ApiResponse> => {
 export const gettestapi = async (value: any): Promise<any> => {
   const axios = require("axios");
   const url = `/.netlify/functions/index?code=${value}`;
-  const response = await axios.get(url);
-  console.log(JSON.stringify(response.data.id_token));
+  const data = await axios.get(url);
+  console.log(data.id_token);
 };
 
 export const getIDToken = async (value: any): Promise<any> => {

@@ -50,7 +50,7 @@ exports.handler = async (event) => {
     // };
 
     const url = "https://stg-id.singpass.gov.sg/token";
-    const response = await axios.post(
+    const { response } = await axios.post(
       url,
       new URLSearchParams({
         client_id: "QXE0KF4WDs7Q73YYnnQVBIQVajPMXFPJ",
@@ -67,7 +67,7 @@ exports.handler = async (event) => {
         },
       }
     );
-
+    console.log(response);
     return {
       statusCode: 200,
       body: JSON.stringify({ data: response }),

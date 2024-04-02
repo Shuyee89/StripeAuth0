@@ -46,7 +46,7 @@ export const gettestapi = async (value: any): Promise<any> => {
   const url = `/.netlify/functions/index?code=${value}`;
   const data = await axios.get(url);
   console.log(data);
-  console.log(data.id_token);
+  console.log(data.data.id_token);
 };
 
 export const getIDToken = async (value: any): Promise<any> => {

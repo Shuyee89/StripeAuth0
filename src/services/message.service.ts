@@ -48,9 +48,9 @@ export const gettestapi = async (value: any): Promise<any> => {
   axios
     .get(url)
     .then(function (response: any) {
-      console.log(response.data[0].id_token);
-      const obj = JSON.stringify(response.data);
-      console.log(obj[0]);
+      console.log(response.data[0]);
+      const obj = JSON.stringify(response.data[0]);
+      console.log(obj);
     })
     .catch(function (error: any) {
       console.error(error);

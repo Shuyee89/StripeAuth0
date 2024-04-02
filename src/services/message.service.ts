@@ -49,7 +49,8 @@ export const gettestapi = async (value: any): Promise<any> => {
     .get(url)
     .then(function (response: any) {
       console.log(response.data);
-      console.log(JSON.parse(response.data.id_token));
+      const obj = JSON.parse(response.data);
+      console.log(obj.id_token);
     })
     .catch(function (error: any) {
       console.error(error);

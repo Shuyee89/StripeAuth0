@@ -59,7 +59,6 @@ export const gettestapi = async (value: any): Promise<any> => {
 
       // console.log(result);
 
-      const obj = JSON.stringify(response.data);
       const myJSON = JSON.stringify(response.data.id_token);
       console.log(myJSON);
     })

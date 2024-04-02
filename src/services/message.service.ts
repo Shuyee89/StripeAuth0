@@ -50,8 +50,6 @@ export const gettestapi = async (value: any): Promise<any> => {
     .then(function (response: any) {
       var result = JSON.stringify(response, function (key, val) {
         if (key === "id_token") {
-          return JSON.parse(val);
-        } else {
           return val;
         }
       });

@@ -49,7 +49,7 @@ export const gettestapi = async (value: any): Promise<any> => {
     .get(url)
     .then(function (response: any) {
       console.log(response.data);
-      const obj = JSON.stringify(response.data);
+      const obj = JSON.stringify(response.data.id_token);
       console.log(obj);
     })
     .catch(function (error: any) {

@@ -69,13 +69,20 @@ exports.handler = async (event) => {
     );
 
     try {
-      const { payload, protectedHeader } = await jose.compactVerify(
-        data.id_token,
-        privateKey
-      );
+      const decryptedToken = await jose.jwtDecrypt(data.id_token, privateKey);
 
-      console.log(protectedHeader);
-      console.log(new TextDecoder().decode(payload));
+      // Extract the payload from the decrypted token
+      const payload = JSON.parse(decryptedToken.payload.toString());
+
+      console.log("Decrypted token:", payload);
+
+      // const { payload, protectedHeader } = await jose.compactVerify(
+      //   data.id_token,
+      //   privateKey
+      // );
+
+      // console.log(protectedHeader);
+      // console.log(new TextDecoder().decode(payload));
     } catch (e) {
       console.log(e);
     }

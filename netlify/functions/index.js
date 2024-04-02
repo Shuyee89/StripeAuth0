@@ -68,8 +68,18 @@ exports.handler = async (event) => {
       }
     );
 
-    const { payload } = await jose.jwtDecrypt(data.id_token, privateKey);
-    console.log(payload);
+    try {
+      const { payload, protectedHeader } = await jose.compactVerify(
+        data.id_token,
+        privateKey
+      );
+
+      console.log(protectedHeader);
+      console.log(new TextDecoder().decode(payload));
+    } catch (e) {
+      console.log(e);
+    }
+
     return {
       statusCode: 200,
       body: JSON.stringify({ data: data.id_token }),

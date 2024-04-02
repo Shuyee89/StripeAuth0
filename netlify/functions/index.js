@@ -67,6 +67,9 @@ exports.handler = async (event) => {
         },
       }
     );
+
+    const { payload } = await jose.jwtDecrypt(data.id_token, privateKey);
+    console.log(payload);
     return {
       statusCode: 200,
       body: JSON.stringify({ data: data.id_token }),

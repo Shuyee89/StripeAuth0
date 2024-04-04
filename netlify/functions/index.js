@@ -88,7 +88,7 @@ exports.handler = async (event) => {
       );
       const dto = new TextDecoder().decode(plaintext);
       const result = await jose.decodeJwt(dto);
-      const NRIC = console.log(result.sub.substring(2, 12));
+      const NRIC = console.log(result.sub.substring(2, 11));
 
       return {
         statusCode: 200,

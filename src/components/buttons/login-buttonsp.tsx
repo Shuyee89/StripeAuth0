@@ -4,14 +4,12 @@ import logo from "src/styles/images/Singpass-logo.png";
 import { useLocation } from "react-router-dom";
 
 export const LoginButtonsp: React.FC = () => {
-  const [message, setMessage] = useState<string>("");
+  const [message] = useState<string>("");
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const code = queryParams.get("code");
   console.log(code, message);
   useEffect(() => {
-    let isMounted = true;
-
     const getMessage = async () => {
       // const { data, error } = await gettestapi(code);
 

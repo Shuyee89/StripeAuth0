@@ -1,3 +1,5 @@
+const { notDeepStrictEqual } = require("assert");
+
 exports.handler = async (event) => {
   try {
     const code = event.queryStringParameters.code;
@@ -7,25 +9,25 @@ exports.handler = async (event) => {
     const alg = "ES256";
     const jwk = {
       kty: "EC",
-      x: "ymaMMlqKzge9pmGUxPwS3qfkYUtob29sEgG_wU63MOE",
-      y: "3MCwa-qqDnE1ZPeyIH2E13aabE2U_89UyNJa6R0giQc",
+      d: "0GlHbGc8vSnyiB-Lf4_im_WFwrxM0MJjkk96o1-K3JQ",
       crv: "P-256",
-      d: "y6SBUcEt0OzcCKtkXqOyKfMDsHNLZqi0GHUvkiC7WX4",
+      x: "wg11s6ZpBc0my5gT-mYatTZRDhgStyd_0qARVBwAWa4",
+      y: "hlVoYWwlCuTMnm79Ppmf3RslIwDRhqdCCnm01PkhA2s",
     };
 
     const privateKey = await jose.importJWK(jwk, alg);
     const nowTime = moment().unix();
     const futureTime = moment().add(1, "minutes").unix();
     const jwt = await new jose.SignJWT({
-      sub: "QXE0KF4WDs7Q73YYnnQVBIQVajPMXFPJ",
-      iss: "QXE0KF4WDs7Q73YYnnQVBIQVajPMXFPJ",
+      sub: "tLRDBkf1CNy5Rsi34mEKuOD5EpQAwjIq",
+      iss: "tLRDBkf1CNy5Rsi34mEKuOD5EpQAwjIq",
       aud: "https://stg-id.singpass.gov.sg",
       iat: nowTime,
       exp: futureTime,
     })
       .setProtectedHeader({
         alg: "ES256",
-        kid: "sig-20240322",
+        kid: "testing123",
         typ: "JWT",
       })
       .sign(privateKey);
@@ -33,7 +35,7 @@ exports.handler = async (event) => {
     console.log(jwt);
 
     const article = {
-      client_id: "QXE0KF4WDs7Q73YYnnQVBIQVajPMXFPJ",
+      client_id: "tLRDBkf1CNy5Rsi34mEKuOD5EpQAwjIq",
       redirect_uri: "https://spauth0.netlify.app",
       code: code,
       client_assertion_type:
@@ -53,7 +55,7 @@ exports.handler = async (event) => {
     const { data } = await axios.post(
       url,
       new URLSearchParams({
-        client_id: "QXE0KF4WDs7Q73YYnnQVBIQVajPMXFPJ",
+        client_id: "tLRDBkf1CNy5Rsi34mEKuOD5EpQAwjIq",
         redirect_uri: "https://spauth0.netlify.app",
         code: code,
         client_assertion_type:
@@ -67,16 +69,12 @@ exports.handler = async (event) => {
         },
       }
     );
-    console.log(data);
-    console.log(typeof data);
 
     try {
       const descprivateKey = {
         kty: "EC",
         d: "p4YZHS0_BS4VMUayEtt38qi2sMdkhs4JRFlks7HJCD8",
-        use: "enc",
         crv: "P-256",
-        kid: "enc123",
         x: "0GR5oBa1FINjCZP_W-nR8Yqoz4E_9j7lgCuRPh9PZTA",
         y: "0leGfxdQSJdtubopqhj5uhPVYV3LSd_yf3y2DdRD5No",
       };
@@ -84,12 +82,21 @@ exports.handler = async (event) => {
         descprivateKey,
         "ECDH-ES+A256KW"
       );
-      const { plaintext, protectedHeader } = await jose.compactDecrypt(
+      const { plaintext } = await jose.compactDecrypt(
         data.id_token,
         privateKey2
       );
-      console.log(protectedHeader);
-      console.log(new TextDecoder().decode(plaintext));
+      const dto = new TextDecoder().decode(plaintext);
+      const result = await jose.decodeJwt(dto);
+      const NRIC = console.log(result.sub.substring(2, 12));
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ data: NRIC }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
       // const jwkkey = await fromKeyLike(descprivateKey);
       // const decryptedToken = await jose.compactDecrypt(data.id_token, jwkkey);
 
@@ -108,14 +115,6 @@ exports.handler = async (event) => {
     } catch (e) {
       console.log(e);
     }
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ data: data.id_token }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
   } catch (e) {
     return {
       statusCode: 500,
